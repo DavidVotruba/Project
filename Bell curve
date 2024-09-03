@@ -1,0 +1,49 @@
+import random
+import matplotlib.pyplot as plt
+
+
+variance_results = []
+ball_count = 500
+lines_count = 20
+
+
+for b in range(ball_count):
+    variance = 0
+    for l in range(lines_count):
+        number = random.randint(0, 1)
+        if number == 0:
+            variance -= 1
+        else:
+            variance += 1
+            
+    variance_results.append(variance)
+
+
+column_names = []
+variance_counts = []
+bar_labels = []
+bar_colors = []
+for number in range(-lines_count, lines_count + 1):
+    column_names.append(number)
+    bar_labels.append("blue")
+    bar_colors.append("tab:blue")
+    variance_counts.append(variance_results.count(number))
+
+print(len(column_names))
+print(len(variance_counts))
+print(len(bar_labels))
+print(len(bar_colors))
+
+print(f"Variance Results are {variance_results}")
+print(f"Variance counts are {variance_counts}")
+print(F"Column names are {column_names}")
+
+fig, ax = plt.subplots()
+
+ax.bar(column_names, variance_counts, label=bar_labels, color=bar_colors)
+
+ax.set_ylabel("Balls supply")
+ax.set_title("Balls suply per distance from the middle ")
+#ax.legend(title="Ball color")
+
+plt.show()
